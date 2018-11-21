@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./include/head.ejs %>
+    <link rel="stylesheet" href="/stylesheets/boot.css">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+                <% include ./include/admin_nav.ejs %>
+  
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <div class="container user user-index">
+
+                            <div class="container user user-show">
+
+                                    <div class="buttons">
+                                     <a class="btn btn-default" href="/admin/user">Back</a>
+                                     <% if (user.email != "master@gmail.com") { %>
+                                     <form action="/admin/user/<%= user._id %>?_method=delete" method="post">
+                                        <a class="btn btn-default" href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
+                                       </form>
+                                       <% } %> 
+                                    </div>
+                                   
+                                    <form class="user-form form-horizontal" action="/users" method="post">
+                                     <div class="contentBox">
+                                      <h3 class="contentBoxTop"><%= user.id %></h3>
+                                      <fieldset disabled>
+                                       <div class="form-group">
+                                        <label for="name" class="col-sm-3">이름</label>
+                                        <div class="col-sm-9">
+                                         <input class="form-control" type="text" id="name" name="name" value="<%= user.name %>">
+                                        </div>
+                                       </div>
+                                       <div class="form-group">
+                                            <label for="name" class="col-sm-3">이메일</label>
+                                            <div class="col-sm-9">
+                                             <input class="form-control" type="text" id="name" name="name" value="<%= user.email || user.social.facebook.email %>">
+                                            </div>
+                                        </div>
+                                       <div class="form-group">
+                                        <label for="email" class="col-sm-3">소셜계정</label>
+                                        <div class="col-sm-9">
+                                         <input class="form-control" type="text" id="email" name="email" value="<%= user.social %>">
+                                        </div>
+                                       </div>
+                                      </fieldset>
+                                     </div>
+                                    </form>
+                                 
+                                   </div> <!-- container end -->
+            </div>
+  
+           
+  
+
+          </main>
+        </div>
+      </div>
+    </body>
+</html>

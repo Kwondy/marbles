@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./include/head.ejs %>
+</head>
+<body>
+    <% include ./include/nav.ejs %>
+    <div class="container">
+        <h1><%= title %></h1>
+        <div class="datails">
+            <div class="card text-xs-center">
+                <br/>
+                <img class="card-img-top" src="<%= avatar %>" alt="Card image cap">
+                <div class="card-block">
+                        <% if (user.email != null) { %>  
+                            <img src="https://avatars.io/gravatar/<%= user.email %>/140" class="img-circle"><br>
+                            <strong>email</strong>: <%= user.email %><br>
+                          <% } %>
+                          asdasdas
+                         
+                    <a href="/logout" class="btn btn-default">Logout</a>
+                </div>
+            </div>
+        </div>
+    <div>
+</body>
+</html>

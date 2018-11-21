@@ -1,0 +1,92 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand"><a href="/"><img src="images/logo.png" style="width:120px; margin-top:-10px;"></a></div>
+     </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+       <li><a href="/posts">포스팅</a></li>
+       <li><a href="/">홍보요청</a></li>
+       <li><a href="/">보상안내</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       <% if(isAuthenticated){ %>
+       <li><a href="/logout">로그아웃</a></li>
+       <li><a href="/profile">마이페이지</a></li>
+       <% } else { %>
+       <li><a href="" data-toggle="modal" data-target="#login">로그인</a></li>
+       <li><a href="" data-toggle="modal" data-target="#signup">회원가입</a></li>
+       <% } %>
+    </ul>
+     </div>
+    </div>
+   </nav>
+
+   <!-- 로그인 모달 부분 -->
+   <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/login" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Welcome sign in</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="">
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+
+                    </div>
+                    <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+                    <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+                    <a href="/auth/naver" class="btn btn-success"><span class="fa fa-facebook"></span> naver</a>
+                    <a href="/auth/kakao" class="btn btn-warning"><span class="fa fa-google-plus"></span> kakao</a>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 회원가입 모달 부분 -->
+   <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="/signup" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Welcome sign up</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                            <label for="inputName" class="sr-only">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="">
+                            <label for="inputEmail" class="sr-only">Email address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="">
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Sign up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

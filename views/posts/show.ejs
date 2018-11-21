@@ -1,0 +1,129 @@
+<!-- views/posts/show.ejs -->
+
+<!DOCTYPE html>
+<html>
+ <head>
+        <% include ../include/head.ejs %>
+          <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="og:url"           content="http://localhost:3000" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+
+    </head>
+    <body>
+     <% include ../include/nav.ejs %>
+
+  <div class="container post post-show">
+
+        <div class="buttons">
+                <a class="btn btn-default" href="/posts">Back</a>
+                <% if(isAuthenticated && post.author && currentUser.id == post.author.id){ %>
+                  <a class="btn btn-default" href="/posts/<%= post._id %>/edit">Edit</a>
+                  <form action="/posts/<%= post._id %>?_method=delete" method="post">
+                    <a class="btn btn-default" href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
+                  </form>
+                <% } %>
+              </div>
+        
+              <div class="contentBox">
+                <h3 class="contentBoxTop"><%= post.title %></h3>
+                <div class="row">
+                  <div class="col-sm-4 col-sm-push-8">
+                    <div class="post-info">
+                      <div><span>Author</span> : <%= post.author ? post.author.username : "" %></div>
+                      <div><span>Created</span> : <%= post.createdDate %> <%= post.createdTime %></div>
+                      <% if(post.updatedAt) { %>
+                        <div><span>Updated</span> : <%= post.updatedDate %> <%= post.updatedTime %></div>
+                      <% } %>
+                    </div> <!-- post-info end -->
+                  </div> <!-- col end-->
+                  <div class="col-sm-8 col-sm-pull-4">
+                    <div class="post-body"><%= post.body %></div>
+                  </div> <!-- col end-->
+                </div> <!-- row end -->
+              </div> <!-- post-container end -->
+        
+            </div> <!-- container end -->
+          </body>
+        </html>
+
+        <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<!-- Your share button code -->
+<div class="fb-share-button" 
+data-href="http://localhost:3000/posts/<%= post._id %>" 
+data-layout="button_count">
+</div>
+
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&appld=636599926736497&width=117&height=20" width="117" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&layout=button_count&size=small&mobile_iframe=true&appId=288081538367097&width=117&height=20" width="117" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+
+
+
+<a id="kakao-link-btn" href="javascript:;">
+  <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+  </a>
+  <script type='text/javascript'>
+    //<![CDATA[
+      // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('YOUR APP KEY');
+      // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+      Kakao.Link.createDefaultButton({
+        container: '#kakao-link-btn',
+        objectType: 'feed',
+        content: {
+          title: '딸기 치즈 케익',
+          description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+          imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com'
+          }
+        },
+        social: {
+          likeCount: 286,
+          commentCount: 45,
+          sharedCount: 845
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: 'https://developers.kakao.com',
+              webUrl: 'https://developers.kakao.com'
+            }
+          },
+          {
+            title: '앱으로 보기',
+            link: {
+              mobileWebUrl: 'https://developers.kakao.com',
+              webUrl: 'https://developers.kakao.com'
+            }
+          }
+        ]
+      });
+    //]]>
+  </script>
+
+
+</div> <!-- container end -->
+ </body>
+</html>
